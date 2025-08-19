@@ -1,0 +1,37 @@
+[Unit]
+Description=Evenlyf Backend Django Application
+After=network.target postgresql.service redis.service
+Wants=postgresql.service redis.service
+
+[Service]
+Type=exec
+User=evenlyf
+Group=evenlyf
+WorkingDirectory=/opt/evenlyf/backend
+Environment=PATH=/opt/evenlyf/backend/venv/bin
+Environment=DJANGO_SETTINGS_MODULE=evenlyf_backend.settings.production
+ExecStart=/opt/evenlyf/backend/venv/bin/python /opt/evenlyf/backend/manage_env.py runserver 0.0.0.0:8000
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+PrivateTmp=true
+Restart=on-failure
+RestartSec=5s
+
+# Variables d'environnement critiques
+EnvironmentFile=/opt/evenlyf/backend/.env
+
+# Sécurité
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/opt/evenlyf/backend/media /opt/evenlyf/backend/logs /tmp
+PrivateDevices=yes
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=evenlyf-backend
+
+[Install]
+WantedBy=multi-user.target 

@@ -1,0 +1,44 @@
+# Django Core
+Django==5.2.4
+djangorestframework==3.16.0
+
+# CORS and Security
+django-cors-headers==4.7.0
+
+# Authentication and OAuth
+django-oauth-toolkit==3.0.1
+django-allauth==0.63.6
+PyJWT==2.10.1
+cryptography==45.0.5
+jwcrypto==1.5.6
+
+# Payment Processing
+stripe==12.4.0
+
+# Configuration and Environment
+python-decouple==3.8
+dj-database-url==3.0.1
+
+# Database
+psycopg2-binary==2.9.10
+
+# Media and Files
+Pillow==11.3.0
+
+# Cache and Task Queue
+redis==5.0.0
+
+# Development and Extensions
+django-extensions==3.2.3
+
+# HTTP Requests (for external APIs)
+requests==2.32.4
+urllib3==2.5.0
+
+# Additional Dependencies for django-allauth
+certifi==2025.7.14
+charset-normalizer==3.4.2
+idna==3.10
+
+# ASGI and Web Server Support
+asgiref==3.9.1 

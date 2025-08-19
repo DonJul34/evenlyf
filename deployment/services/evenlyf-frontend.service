@@ -1,0 +1,33 @@
+[Unit]
+Description=Evenlyf Frontend React Application
+After=network.target
+
+[Service]
+Type=exec
+User=evenlyf
+Group=evenlyf
+WorkingDirectory=/opt/evenlyf/frontend
+Environment=PATH=/usr/bin:/bin
+Environment=NODE_ENV=production
+ExecStart=/usr/bin/python3 -m http.server 3000 --directory build
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+PrivateTmp=true
+Restart=on-failure
+RestartSec=5s
+
+# Sécurité
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/opt/evenlyf/frontend/build /tmp
+PrivateDevices=yes
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=evenlyf-frontend
+
+[Install]
+WantedBy=multi-user.target 
